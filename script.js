@@ -47,27 +47,30 @@ document.addEventListener("DOMContentLoaded", function () {
     const pages = grid.querySelectorAll("a");
     if (pages.length <= 1) return;
 
-    // إخفاء كل الصفحات ما عدا الغلاف
+    const cover = pages[0];
+
+    // إخفاء كل الصفحات بعد الغلاف
     pages.forEach(function (page, index) {
       if (index > 0) {
-        page.classList.add("hidden-page");
+        page.style.display = "none";
       }
     });
 
     // جعل الغلاف قابلًا للضغط
-    const cover = pages[0];
-    cover.classList.add("booklet-cover");
+    cover.style.cursor = "pointer";
 
     cover.addEventListener("click", function (event) {
       event.preventDefault();
 
-      const isOpen = booklet.classList.toggle("booklet-open");
+      const isOpen = booklet.dataset.open === "true";
 
       pages.forEach(function (page, index) {
         if (index > 0) {
-          page.classList.toggle("hidden-page", !isOpen);
+          page.style.display = isOpen ? "none" : "";
         }
       });
+
+      booklet.dataset.open = isOpen ? "false" : "true";
     });
   });
 });
