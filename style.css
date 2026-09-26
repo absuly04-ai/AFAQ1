@@ -54,3 +54,31 @@ body.en{font-family:Inter,Cairo,sans-serif;direction:ltr}.en .nav{direction:ltr}
 
 .library-section{background:#fbfcfd}.booklets{display:grid;gap:26px}.booklet{background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:var(--shadow)}.booklet-head{display:flex;gap:16px;align-items:flex-start;margin-bottom:22px}.booklet-head>span{font:700 .8rem Inter,sans-serif;color:#8b95a3;background:#f0f2f5;border-radius:999px;padding:7px 10px}.booklet-head h3{margin:0 0 4px;font-size:1.3rem}.booklet-head p{margin:0;color:var(--muted);font-size:.88rem}.page-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-items:start}.page-grid a{display:block;background:#f0f2f5;border-radius:14px;overflow:hidden;border:1px solid var(--line)}.page-grid img{display:block;width:100%;height:auto;aspect-ratio:auto;object-fit:contain}.booklet:first-child .page-grid{grid-template-columns:repeat(5,1fr)}.booklet.incomplete{border-top:3px solid var(--red)}
 @media(max-width:850px){.page-grid,.booklet:first-child .page-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.page-grid,.booklet:first-child .page-grid{grid-template-columns:1fr}}
+/* ترتيب صفحات الكتيبات */
+.page-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.page-grid a {
+  display: block;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.page-grid a:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.13);
+}
+
+.page-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
