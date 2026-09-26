@@ -82,3 +82,30 @@ body.en{font-family:Inter,Cairo,sans-serif;direction:ltr}.en .nav{direction:ltr}
   height: auto;
   object-fit: contain;
 }
+/* شكل الكتيبات التفاعلية */
+.booklet .page-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+/* إخفاء الصفحات الداخلية */
+.booklet .hidden-page {
+  display: none;
+}
+
+/* الغلاف */
+.booklet .booklet-cover {
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* تأثير عند لمس الغلاف */
+.booklet .booklet-cover:hover {
+  transform: translateY(-5px);
+}
+
+/* عندما يفتح الكتيب */
+.booklet.booklet-open .page-grid {
+  margin-top: 24px;
+}
