@@ -39,3 +39,35 @@ function setLang(lang){
 toggle.addEventListener('click',()=>setLang(localStorage.getItem('afaq_lang')==='en'?'ar':'en'));
 setLang(localStorage.getItem('afaq_lang')||'ar');
 document.getElementById('year').textContent=new Date().getFullYear();
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".booklet").forEach(function (booklet) {
+    const grid = booklet.querySelector(".page-grid");
+    if (!grid) return;
+
+    const pages = grid.querySelectorAll("a");
+    if (pages.length <= 1) return;
+
+    // إخفاء كل الصفحات ما عدا الغلاف
+    pages.forEach(function (page, index) {
+      if (index > 0) {
+        page.classList.add("hidden-page");
+      }
+    });
+
+    // جعل الغلاف قابلًا للضغط
+    const cover = pages[0];
+    cover.classList.add("booklet-cover");
+
+    cover.addEventListener("click", function (event) {
+      event.preventDefault();
+
+      const isOpen = booklet.classList.toggle("booklet-open");
+
+      pages.forEach(function (page, index) {
+        if (index > 0) {
+          page.classList.toggle("hidden-page", !isOpen);
+        }
+      });
+    });
+  });
+});
