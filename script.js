@@ -42,3 +42,16 @@ document.querySelectorAll(".feature-book").forEach(book=>{
    if(open) setTimeout(()=>pages.scrollIntoView({behavior:"smooth",block:"nearest"}),50);
  });
 });
+/* ===== AFAQ BOOKLET OPEN / CLOSE ===== */
+
+document.querySelectorAll(".booklet").forEach(booklet => {
+  const cover = booklet.querySelector(".page-grid > a:first-child");
+
+  if (!cover) return;
+
+  cover.addEventListener("click", event => {
+    event.preventDefault();
+
+    booklet.classList.toggle("open");
+  });
+});
