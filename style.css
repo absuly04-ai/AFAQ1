@@ -10,3 +10,75 @@
 body.en{font-family:Inter,Cairo,sans-serif;direction:ltr}.en .nav{direction:ltr}.en .hero{text-align:left}.en .contact-link{direction:ltr}.en .note{border-left:3px solid #b9c2cd;border-right:0;padding-left:16px;padding-right:0}
 @media(max-width:850px){.nav{height:auto;min-height:68px;flex-wrap:wrap;padding:10px 0}.nav-links{order:3;width:100%;overflow:auto;padding-bottom:6px}.hero{padding:75px 0}.hero-grid,.about,.contact-box,.feature-book{grid-template-columns:1fr;gap:30px}.hero-card{min-height:280px}.skill-grid{grid-template-columns:1fr}.section{padding:70px 0}.contact-box{padding:32px}.feature-cover{max-width:520px}.feature-pages{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.container{width:min(100% - 26px,1120px)}.nav-links{gap:15px;font-size:.8rem}.lang-btn{padding:7px 11px}h1{font-size:2.55rem}.hero p{font-size:.95rem}.footer-inner{flex-direction:column}.feature-pages{grid-template-columns:1fr}.feature-book{padding:16px}.booklet{padding:16px}}
+/* ===== AFAQ BOOKLET COVER / INSIDE PAGES ===== */
+
+.booklet .page-grid {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+/* الغلاف */
+.booklet .page-grid > a:first-child {
+  flex: 0 0 min(360px, 38%);
+  cursor: pointer;
+}
+
+/* الصفحات الداخلية مخفية */
+.booklet .page-grid > a:not(:first-child) {
+  display: none;
+}
+
+/* عند فتح الكتاب */
+.booklet.open .page-grid {
+  display: grid;
+  grid-template-columns: minmax(240px, 360px) repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 16px;
+}
+
+/* الغلاف يبقى على اليمين */
+.booklet.open .page-grid > a:first-child {
+  grid-row: span 2;
+}
+
+/* إظهار الصفحات */
+.booklet.open .page-grid > a:not(:first-child) {
+  display: block;
+}
+
+/* الصور */
+.booklet .page-grid img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* الهاتف */
+@media (max-width: 850px) {
+  .booklet .page-grid {
+    flex-direction: column;
+  }
+
+  .booklet .page-grid > a:first-child {
+    flex: none;
+    width: min(100%, 420px);
+    margin: auto;
+  }
+
+  .booklet.open .page-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .booklet.open .page-grid > a:first-child {
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .booklet.open .page-grid {
+    grid-template-columns: 1fr;
+  }
+}
